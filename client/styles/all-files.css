@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url("../Images/background5.jpg");
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-size: 100%;*/
+}
+
+p {
+    font-family: Andale Mono, monospace;
+}
+

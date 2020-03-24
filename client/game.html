@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>checkers game</title>
+    <link rel="stylesheet" type="text/css" href="styles/all-files.css">
+    <link rel="stylesheet" type="text/css" href="styles/game.css">
+    <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+</head>
+
+<body>
+    <image id="imgOnCursor" width='0' height='0'>
+        <div id="board">
+            <div id="title">
+                <!-- text will be transplanted here by the JS code-->
+            </div>
+
+            <!-- all images will be transplanted here by the JS code-->
+        </div>
+
+
+        <div id="menu">
+            <div class="userInfo" id="blackPlayerInfo">
+                <h4>black player</h4>
+                <h3>rating</h3>
+            </div>
+
+            <div id='buttons'>
+                <button class='gameButton' onclick="RunGame.flipBoard()">
+                    Flip board
+                </button>
+                <button class='gameButton' onclick="shiftPageAndPreserveToken('mainPage')">
+                    Leave game
+                </button>
+            </div>
+
+            <div class="userInfo" id="whitePlayerInfo">
+                <h4>white player</h4>
+                <h3>rating</h3>
+            </div>
+
+        </div>
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="website-js/tokenHandler.js"></script>
+
+        <script src="game-js/allVariables.js"></script>
+        <script src="game-js/prepareGame.js"></script>
+        <script src="game-js/cursorImg.js"></script>
+        <script src="game-js/title.js"></script>
+        <script src="game-js/tile.js"></script>
+        <script src="game-js/piece.js"></script>
+        <script src="game-js/moveClasses.js"></script>
+        <script src="game-js/calcMoveLegality.js"></script>
+        <script src="game-js/communication.js"></script>
+        <script src="game-js/playersInfo.js"></script>
+        <script src="game-js/runGame.js"></script>
+
+</body>
+
+</html>

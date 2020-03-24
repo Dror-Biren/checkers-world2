@@ -1,0 +1,81 @@
+div#board {
+    width: 70vmin;
+    margin-left: 4%;
+    margin-top: 1%;
+    float: left;
+    display: inline;
+}
+
+img {
+    width: 12.5%;
+    height: 9vmin;
+}
+
+    img.darkTile:hover {
+        filter: hue-rotate(-70deg);
+    }
+
+
+#imgOnCursor {
+    z-index: 99;
+    
+}
+
+div#title {
+    font-weight: 500;
+    font-size: 3.8vmin;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: darkslategrey;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+
+    div#title h3 {
+        font-weight: 300;
+        margin-top: 0.5em;
+        margin-bottom: 0.1em;
+    }
+
+
+div#menu {
+    width: 13vmin;
+    height: 70vmin;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20vmin;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+
+.userInfo {
+    width: 8.4vw;
+    height: 8.4vw;
+    font-size: 1.3vw;
+    text-align: center;
+    font-weight: 400;
+    font-family: Andale Mono, monospace;
+    border: 1px solid black
+}
+
+h4 {
+    margin-top: 12%;
+    margin-bottom: 3%;
+}
+
+#whitePlayerInfo {
+    background-color: rgb(240, 240, 240);
+    color: rgb(32, 32, 32);
+}
+
+#blackPlayerInfo {
+    background-color: rgb(32, 32, 32);
+    color: rgb(231, 231, 231);
+}
+
+#buttons {
+    margin-top: auto;
+    margin-bottom: auto;
+}

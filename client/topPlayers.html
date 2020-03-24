@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CHECKERS WORLD OF DROR</title>
+    <link rel="stylesheet" type="text/css" href="styles/all-files.css">
+    <link rel="stylesheet" type="text/css" href="styles/entering.css">
+    <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+    <link rel="stylesheet" type="text/css" href="styles/table.css">
+</head>
+
+<body>
+    <div id="pageContent">
+        <div id="header">
+            <h1 id="small">Welcome to the</h1>
+            <h1>Checkers world of Dror</h1>
+        </div>
+        <div id="menu">
+            <img id="left" src="../Images/scroll.png">
+            <img id="middle" src="../Images/scroll.png">
+            <img id="right" src="../Images/scroll.png">
+
+            <div id="menuContent">
+                <h2>Leaderboard</h2>
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Rating</th>
+                    </tr>
+                    <!-- The information will be entered here using JS code -->
+                </table>
+
+                <button class='mainButton' onclick="animateShiftPage('mainPage')">
+                    back to main page
+                </button>
+
+                <button id='logOut' onclick="confirmLogOut()">
+                    log out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="website-js/scrollAnimate.js"></script>
+    <script src="website-js/tokenHandler.js"></script>
+    <script src="website-js/viewTopPlayers.js"></script>
+</body>
+
+</html>

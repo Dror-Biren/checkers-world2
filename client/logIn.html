@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CHECKERS WORLD OF DROR</title>
+    <link rel="stylesheet" type="text/css" href="styles/all-files.css">
+    <link rel="stylesheet" type="text/css" href="styles/entering.css">
+    <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+</head>
+
+<body>
+    <div id="pageContent">
+        <div id="header">
+            <h1 id="small">Welcome to the</h1>
+            <h1>Checkers world of Dror</h1>
+        </div>
+        <div id="menu">
+            <img id="left" src="../Images/scroll.png">
+            <img id="middle" src="../Images/scroll.png">
+            <img id="right" src="../Images/scroll.png">
+
+            <div id="menuContent">
+                <h2>Log-in </h2>
+                <form>
+                    <label>user-name / email <span class="dotted">----</span></label>
+                    <input type="text" name="usernameOrMail" placeholder=" enter your username/email" required>
+                    <br>
+
+                    <label>password <span class="dotted">-------------</span></label>
+                    <input type="password" name="password" placeholder=" enter your password" required autocomplete="off">
+                    <br>
+
+                    <button type="button" id="send" onclick="submitForm('logIn')">
+                        send
+                    </button>
+
+                    <h3>Don't have an account yet?</h3>
+                    <button type="button" id="clickHere" class="bigMargin" onclick="animateShiftPage('index')">
+                        click here!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js "></script>
+    <script src="website-js/scrollAnimate.js "></script>
+    <script src="website-js/tokenHandler.js "></script>
+    <script src="website-js/submitForms.js "></script>
+</body>
+
+</html>

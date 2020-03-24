@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CHECKERS WORLD OF DROR</title>
+    <link rel="stylesheet" type="text/css" href="styles/all-files.css">
+    <link rel="stylesheet" type="text/css" href="styles/entering.css">
+    <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+</head>
+
+<body>
+    <div id="pageContent">
+        <div id="header">
+            <h1 id="small">Welcome to the</h1>
+            <h1>Checkers world of Dror</h1>
+        </div>
+        <div id="menu">
+            <img id="left" src="../Images/scroll.png">
+            <img id="middle" src="../Images/scroll.png">
+            <img id="right" src="../Images/scroll.png">
+
+            <div id="menuContent">
+                <h2> </h2>
+                <h3>
+                    Please enter the confirm code sent to your email to continue:
+                    <br> (If you don't see the email, try searching your spam folder)
+                </h3>
+                <form>
+                    <label>Your confirm code: </label>
+                    <input type="text" name="confirmCode" placeholder=" Type here..." required>
+                    <br>
+
+                    <button type="button" id="send" onclick="submitForm('logIn')">
+                        Send email again
+                    </button>
+
+                    <h3>Want to open a new account?</h3>
+                    <button type="button" id="clickHere" class="bigMargin" onclick="animateShiftPage('index')">
+                        click here!
+                    </button>
+
+                    <h3>Want to log in from another account?</h3>
+                    <button type="button" id="clickHere" onclick="animateShiftPage('index')">
+                        click here!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js "></script>
+    <script src="website-js/scrollAnimate.js "></script>
+    <script src="website-js/tokenHandler.js "></script>
+    <script src="website-js/submitForms.js "></script>
+</body>
+
+</html>
