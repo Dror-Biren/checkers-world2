@@ -2,7 +2,7 @@ let isAnimetionRunning = true
 
 animateScroll(true, 1000)
 
-function animateScroll(isOpening, delay, nextAction = ()=>{}) {
+function animateScroll(isOpening, delay, nextAction = () => {}) {
     isAnimetionRunning = true
 
     const right = document.getElementById("right")
@@ -21,7 +21,7 @@ function animateScroll(isOpening, delay, nextAction = ()=>{}) {
     let cutPrecent = isOpening ? maxCutPrecent : minCutPrecent
 
     setFrameState()
-    setTimeout(animate,delay)
+    setTimeout(animate, delay)
 
     function animate() {
         setTimeout(() => {
@@ -32,7 +32,7 @@ function animateScroll(isOpening, delay, nextAction = ()=>{}) {
             if (cutPrecent > maxCutPrecent) {
                 cutPrecent = maxCutPrecent
                 isAnimetionDone = true
-            } 
+            }
             if (cutPrecent < minCutPrecent) {
                 cutPrecent = minCutPrecent
                 isAnimetionDone = true
@@ -43,8 +43,7 @@ function animateScroll(isOpening, delay, nextAction = ()=>{}) {
             if (isAnimetionDone) {
                 isAnimetionRunning = false
                 nextAction()
-            }
-            else
+            } else
                 animate()
         }, 20)
     }

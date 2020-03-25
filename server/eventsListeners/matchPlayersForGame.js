@@ -1,18 +1,17 @@
-
 let waitingForMatch = null
 
 function lookForMatchOpponent(socket, user) {
     if (waitingForMatch === null)
         return waitForMatch(socket, user)
-   /*
+
     if (user.username === waitingForMatch.user.username)
         throw new Error('ERROR: opening parallel games')
-    */
+
     return matchWasFound(socket, user)
 }
 
 function waitForMatch(socket, user) {
-    waitingForMatch = {socket, user}
+    waitingForMatch = { socket, user }
 }
 
 function matchWasFound(socket, user) {
@@ -26,9 +25,9 @@ function matchWasFound(socket, user) {
 function startNewGame(socket1, user1, socket2, user2) {
     const callback = function(error) {
         const usersString = `${user1.username}, ${user2.username}`
-        if(error)
+        if (error)
             throw new Error(`failed to init game between users: ${usersString}`)
-        console.log(`game was successfuly init between users: ${usersString}`)   
+        console.log(`game was successfuly init between users: ${usersString}`)
     }
 
     const isUser1White = Math.random() < 0.5
@@ -39,8 +38,6 @@ function startNewGame(socket1, user1, socket2, user2) {
 function userHasDisconnectedInGamePage(user) {
     if (waitingForMatch && user.username === waitingForMatch.user.username)
         waitingForMatch = null
-    user.isNowOnGamePage = false
-    user.save()
 }
 
-module.exports = {lookForMatchOpponent, userHasDisconnectedInGamePage}
+module.exports = { lookForMatchOpponent, userHasDisconnectedInGamePage }

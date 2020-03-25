@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
     <div id="pageContent">
         <div id="header">
             <h1 id="small">Welcome to the</h1>
@@ -20,10 +25,15 @@
             <img id="right" src="../Images/scroll.png">
 
             <div id="menuContent">
-                <h2></h2>
-                <h3>What would you like to do now?</h3>
 
-                <button class='mainButton' onclick="animateShiftPage('game')">
+                <div id="menuTitle">
+                    <h2>
+                    </h2>
+                    <h3>What would you like to do now?</h3>
+                    <br>
+                </div>
+
+                <button class='mainButton' onclick="requstNewGame()">
                     Start new game
                 </button>
 
@@ -42,15 +52,11 @@
         </div>
     </div>
 
-
-    <div onclick="printAllUsers()">
-        <p>(for test only: log to console all users)</p>
-    </div>
-
     <script src="/socket.io/socket.io.js"></script>
     <script src="website-js/scrollAnimate.js"></script>
     <script src="website-js/tokenHandler.js"></script>
     <script src="website-js/mainPage.js"></script>
+    <script src="website-js/logOut.js"></script>
 </body>
 
 </html>

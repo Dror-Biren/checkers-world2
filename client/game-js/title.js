@@ -1,29 +1,28 @@
-
 let Title = {};
 
-Title.annonceGameStart = function () {
+Title.annonceGameStart = function() {
     Title.writeDocTitle(messages.STARTING_WHITE);
     Title.writeDocSubTitle(messages.POLITE_OPEN + messages.FIRST_STEP);
 }
 
-Title.annonceRegularGameEnd = function (isClientWon) {
+Title.annonceRegularGameEnd = function(isClientWon) {
     let status = isClientWon ? "WIN" : "LOSE"
     Title.writeDocTitle(messages[status]);
     Title.writeDocSubTitle(messages[status + "_SUB"]);
 }
 
-Title.annonceTechnicalGameEnd = function () {
+Title.annonceTechnicalGameEnd = function() {
     Title.writeDocTitle(messages.WIN_TECHNICALY);
     Title.writeDocSubTitle(messages.WIN_TECHNICALY_SUB);
 }
 
-Title.annonceIllegalMove = function () {
+Title.annonceIllegalMove = function() {
     Title.writeDocTitle(messages.CLIENT_TURN + messages.ERROR.INSTRUCTION);
     let message = isDoubleCapture ? messages.DOUBLE_CAPTURE : Title.getFirstStepMessage();
     Title.writeDocSubTitle(message);
 }
 
-Title.writeInstructionsForNextClick = function () {
+Title.writeInstructionsForNextClick = function() {
     if (isGameOver)
         return;
 
@@ -32,23 +31,23 @@ Title.writeInstructionsForNextClick = function () {
     Title.writeDocSubTitle(messages.POLITE_OPEN + message);
 }
 
-Title.getFirstStepMessage = function () {
+Title.getFirstStepMessage = function() {
     return isCapturePossible ? messages.FIRST_STEP_WITH_CAPTURE : messages.FIRST_STEP;
 }
 
-Title.getSecondStepMessage = function () {
+Title.getSecondStepMessage = function() {
     return isDoubleCapture ? messages.DOUBLE_CAPTURE : messages.SECOND_STEP;
 }
 
-Title.writeDocTitle = function (message) {
-    document.getElementById("title").innerHTML = "<h3>" + message + "</h3>";
+Title.writeDocTitle = function(message) {
+    document.querySelector("h3").innerHTML = message;
 }
 
-Title.writeDocSubTitle = function (message) {
-    document.getElementById("title").innerHTML += message;
+Title.writeDocSubTitle = function(message) {
+    document.querySelector("h4").innerHTML = message;
 }
 
-Title.waitingToOpponent = function (isFirstTurn) {
+Title.waitingToOpponent = function(isFirstTurn) {
     //console.log(isClientTurn())
 
     let amountDots = 0
@@ -68,7 +67,7 @@ Title.waitingToOpponent = function (isFirstTurn) {
     }
 }
 
-Title.waitingToMatch = function () {
+Title.waitingToMatch = function() {
     let amountDots = 0
     recursivAnimate()
 

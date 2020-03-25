@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
     <div id="pageContent">
         <div id="header">
             <h1 id="small">Welcome to the</h1>
@@ -20,7 +25,11 @@
             <img id="right" src="../Images/scroll.png">
 
             <div id="menuContent">
-                <h2>Log-in </h2>
+
+                <div id="menuTitle">
+                    <h2>Log-in </h2>
+                </div>
+
                 <form>
                     <label>user-name / email <span class="dotted">----</span></label>
                     <input type="text" name="usernameOrMail" placeholder=" enter your username/email" required>
@@ -30,12 +39,12 @@
                     <input type="password" name="password" placeholder=" enter your password" required autocomplete="off">
                     <br>
 
-                    <button type="button" id="send" onclick="submitForm('logIn')">
-                        send
+                    <button type="button" class="mainButton" onclick="submitForm('logIn')">
+                        Send
                     </button>
 
                     <h3>Don't have an account yet?</h3>
-                    <button type="button" id="clickHere" class="bigMargin" onclick="animateShiftPage('index')">
+                    <button type="button" class="bigMargin smallButton" onclick="animateShiftPage('index')">
                         click here!
                     </button>
                 </form>

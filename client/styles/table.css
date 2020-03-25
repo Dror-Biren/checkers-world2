@@ -1,12 +1,11 @@
         body {
             font-family: "Roboto", helvetica, arial, sans-serif;
-            font-size: 16px;
             font-weight: 400;
             text-rendering: optimizeLegibility;
         }
         
         table {
-            margin: 5% auto 3% auto;
+            margin: 0% auto 6% auto;
             text-align: center;
         }
         
@@ -15,21 +14,21 @@
             background: #3014207a;
             border-bottom: 4px solid #9ea7af;
             border-right: 1px solid #343a45;
-            font-size: 3vmin;
+            font-size: calc(2.6 * min(1vw, 1.25vh));
             font-weight: 100;
             width: 25vmin;
-            height: 6vmin;
+            height: 5.3vmin;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             vertical-align: middle;
         }
         
         th:first-child {
-            border-top-left-radius: 3px;
+            border-top-left-radius: 5px;
             width: 6vmin;
         }
         
         th:last-child {
-            border-top-right-radius: 3px;
+            border-top-right-radius: 5px;
             border-right: none;
             width: 14vmin;
         }
@@ -38,7 +37,7 @@
             border-top: 1px solid #C1C3D1;
             border-bottom: 1px solid #C1C3D1;
             color: #666B85;
-            font-size: 2vmin;
+            font-size: calc(2.2 * min(1vw, 1.25vh));
             font-weight: normal;
             text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
         }
@@ -58,27 +57,28 @@
         }
         
         tr:nth-child(odd) td {
-            background: #EBEBEB;
+            background: rgba(212, 212, 212, 0.589);
         }
         
         tr:nth-child(odd):hover td {
-            background: #4E5066;
+            background: rgb(99, 103, 129);
         }
         
         tr:last-child td:first-child {
-            border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 5px;
         }
         
         tr:last-child td:last-child {
-            border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 5px;
         }
         
         td {
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.596);
             /*padding: 2%;*/
             vertical-align: middle;
+            height: 4.5vmin;
             font-weight: 300;
-            font-size: 18px;
+            /*font-size: 2.5vw;*/
             text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
             border-right: 1px solid #C1C3D1;
         }

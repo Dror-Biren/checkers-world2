@@ -4,11 +4,19 @@ const sendConfirmEmail = require('./emailSender')
 async function signUpUser({ username, email, password, confirmPassword }) {
     if (password !== confirmPassword)
         throw new Error("Password and confirm password does not match")
-    const user = new User({ username, email, password })
+    const codeToConfirm = generateRandomCode()
+    const user = new User({ username, email, password, codeToConfirm })
     await user.save()
     const token = await user.generateAuthToken()
-    const codeToConfirm = sendConfirmEmail(user)
-    return { user, token, codeToConfirm }
+    sendConfirmEmail(user)
+    return { user, token }
+}
+
+function generateRandomCode() {
+    let code = ''
+    for (let i = 0; i < process.env.CONFIRM_CODE_LENGTH; i++)
+        code += parseInt(Math.random() * 10)
+    return code
 }
 
 async function logInUser({ usernameOrMail, password }) {
@@ -18,9 +26,6 @@ async function logInUser({ usernameOrMail, password }) {
 }
 
 async function getTopUsers(isLimited) {
-    let deleteDror = await User.deleteOne({ email: 'drorbiren@gmail.com' })
-    console.log({ deleteDror })
-
     let options = { sort: { rating: -1 } }
     if (isLimited)
         options.limit = parseInt(process.env.LEADERS_TABLE_AMOUNT)
@@ -46,14 +51,9 @@ function calcRatingChange(player1Rating, player2Rating, isPlayer1Won) {
     }
 }
 
-async function deleteUser(user) {
-    await User.deleteOne({ username: user.username })
-}
-
 module.exports = {
     signUpUser,
     logInUser,
     getTopUsers,
     updateUserRating,
-    deleteUser
 }

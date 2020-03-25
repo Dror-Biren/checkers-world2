@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
     <div id="pageContent">
         <div id="header">
             <h1 id="small">Welcome to the</h1>
@@ -21,7 +26,11 @@
             <img id="right" src="../Images/scroll.png">
 
             <div id="menuContent">
-                <h2>Leaderboard</h2>
+
+                <div id="menuTitle">
+                    <h2>Leaderboard</h2>
+                </div>
+
                 <table>
                     <tr>
                         <th>#</th>
@@ -46,6 +55,7 @@
     <script src="website-js/scrollAnimate.js"></script>
     <script src="website-js/tokenHandler.js"></script>
     <script src="website-js/viewTopPlayers.js"></script>
+    <script src="website-js/logOut.js"></script>
 </body>
 
 </html>

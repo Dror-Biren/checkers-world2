@@ -5,16 +5,10 @@ identifiedToken((user) => {
     document.querySelector("h2").innerHTML = `Hi ${client.username}!`
 })
 
-function confirmLogOut() {
-    if (confirm("Are you sure you want to log-out?"))
-        animateShiftPage('index', '')
-}
-
-function printAllUsers() {
-    socket.emit('getTopUsers', false, (error, users) => {
+function requstNewGame() {
+    socket.emit('requestNewGame', getToken(), (error) => {
         if (error)
-            alert(error)
-        else
-            console.log("all users:", users)
+            return alert(error)
+        shiftPageAndPreserveToken('game')
     })
 }

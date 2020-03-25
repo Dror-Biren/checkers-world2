@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         validate(value) {
-            if (!validator.isEmail(value)) 
+            if (!validator.isEmail(value))
                 throw new Error('Email is invalid')
         }
     },
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         minlength: 7,
         trim: true,
         validate(value) {
-            if (value.toLowerCase().includes('password') || value.includes('1234')) 
+            if (value.toLowerCase().includes('password') || value.includes('1234'))
                 throw new Error('Password too weak')
         }
     },
@@ -41,7 +41,15 @@ const userSchema = new mongoose.Schema({
         default: process.env.INITIAL_RATING,
         required: true
     },
-    isNowOnGamePage: {
+    codeToConfirm: {
+        type: String,
+        required: true
+    },
+    isConfirmed: {
+        type: Boolean,
+        default: false
+    },
+    isNewGameRequested: {
         type: Boolean,
         default: false
     },
@@ -55,7 +63,7 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function() {
     const user = this
     const userObject = user.toObject()
 
@@ -66,7 +74,7 @@ userSchema.methods.toJSON = function () {
     return userObject
 }
 
-userSchema.methods.generateAuthToken = async function () {
+userSchema.methods.generateAuthToken = async function() {
     const user = this
     const token = jwt.sign({ id: user._id.toString() }, process.env.JWT_SECRET)
 
@@ -76,27 +84,27 @@ userSchema.methods.generateAuthToken = async function () {
     return token
 }
 
-userSchema.statics.findByCredentials = async (usernameOrMail, password) => {
+userSchema.statics.findByCredentials = async(usernameOrMail, password) => {
     let user = await User.findOne({ email: usernameOrMail })
     if (!user)
         user = await User.findOne({ username: usernameOrMail })
 
     if (!user)
-        throw new Error('There is no email or user in our system named: '+usernameOrMail)
+        throw new Error('There is no email or user in our system named: ' + usernameOrMail)
 
     const isMatch = await bcrypt.compare(password, user.password)
 
-    if (!isMatch) 
+    if (!isMatch)
         throw new Error('Wrong password')
-    
+
     return user
 }
 
 // Hash the plain text password before saving
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
     const user = this
 
-    if (user.isModified('password')) 
+    if (user.isModified('password'))
         user.password = await bcrypt.hash(user.password, 8)
 
     next()

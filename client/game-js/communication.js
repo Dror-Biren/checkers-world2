@@ -1,19 +1,19 @@
 let Communication = {};
 const socket = io()
 
-Communication.emitEnterGamePage = function () {
-    socket.emit('enterGamePage', getToken(), (error) => {
+Communication.emitEnterGamePage = function() {
+    socket.emit('enterGamePage', getToken(), (error, isNewGameRequested) => {
         if (error) {
             shiftPageAndPreserveToken('mainPage')
-            alert(error)
-            //console.log(error)
+            return alert(error)
         }
-        else
-            console.log('Enter-to-game-page message received successfully!')
+        if (isNewGameRequested)
+            return console.log('Enter-to-game-page message received successfully!')
+        shiftPageAndPreserveToken('mainPage')
     })
 }
 
-Communication.emitMove = function () {
+Communication.emitMove = function() {
     let clicks = {
         row1: clicked.prvTile.row,
         column1: clicked.prvTile.column,
@@ -22,13 +22,13 @@ Communication.emitMove = function () {
     }
 
     console.log('about to emit the move:', clicks)
-    socket.emit('clientPlayedMove', /*getToken(), */clicks, (error) => {
+    socket.emit('clientPlayedMove', /*getToken(), */ clicks, (error) => {
         console.log(error ? error : `move received successfully!`)
     })
 }
 
 
-Communication.emitEndGame = function (isClientWon) {
+Communication.emitEndGame = function(isClientWon) {
     socket.emit('gameEnd', isClientWon, (error, ratingChange) => {
         if (error)
             return console.log(error)
@@ -55,8 +55,7 @@ socket.on('initGame', (isPlayerWhite, opponentUser, callback) => {
         isClientWhite = isPlayerWhite
         PlayersInfo.setText()
         callback()
-    }
-    catch (error) {
+    } catch (error) {
         callback(error)
     }
 })
@@ -75,8 +74,7 @@ socket.on('opponentPlayedMove', (clicks, callback) => {
         RunGame.tileWasClickedInCorrectTime(clicks.row2, clicks.column2)
 
         callback()
-    }
-    catch (error) {
+    } catch (error) {
         callback(error)
     }
 })
@@ -89,8 +87,7 @@ socket.on('opponentDisconnect', (ratingChange, callback) => {
         RunGame.endTheGame(true)
         PlayersInfo.updateRating(ratingChange)
         callback()
-    }
-    catch (error) {
+    } catch (error) {
         callback(error)
     }
 })

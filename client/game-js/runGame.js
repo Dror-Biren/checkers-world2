@@ -1,13 +1,13 @@
 let RunGame = {};
 
-RunGame.flipBoard = function () {
+RunGame.flipBoard = function() {
     isBoardUpsideDown = !isBoardUpsideDown;
     RunGame.updateBoardDisplay();
     PlayersInfo.flipOrder()
 }
 
-RunGame.tileWasClicked = function (row, column) {
-    if (isGameOver)
+RunGame.tileWasClicked = function(row, column) {
+    if (isGameOver || !isGameStart)
         return;
 
     if (!isClientTurn())
@@ -16,7 +16,7 @@ RunGame.tileWasClicked = function (row, column) {
     RunGame.tileWasClickedInCorrectTime(row, column)
 }
 
-RunGame.tileWasClickedInCorrectTime = function (row, column) {
+RunGame.tileWasClickedInCorrectTime = function(row, column) {
     clicked.tile = Tile.getTileByPosition(row, column);
 
     if (!isDoubleCapture)
@@ -26,7 +26,7 @@ RunGame.tileWasClickedInCorrectTime = function (row, column) {
     RunGame.executeClick();
 }
 
-RunGame.executeClick = function () {
+RunGame.executeClick = function() {
     let move = isFirstStepOfTurn ?
         CalcMoveLegality.getFirstStepMoveLegality() :
         CalcMoveLegality.getSecondStepMoveLegality();
@@ -35,12 +35,11 @@ RunGame.executeClick = function () {
             move.explainErrorToUser();
         if (!isDoubleCapture)
             move.setTurnToFirstStep();
-    }
-    else
+    } else
         RunGame.executeLegalClick(move)
 }
 
-RunGame.executeLegalClick = function (move) {
+RunGame.executeLegalClick = function(move) {
     if (!isFirstStepOfTurn && isClientTurn()) {
         Communication.emitMove();
         Title.waitingToOpponent();
@@ -55,12 +54,12 @@ RunGame.executeLegalClick = function (move) {
         Title.writeInstructionsForNextClick();
 }
 
-RunGame.updateBoardDisplay = function () {
+RunGame.updateBoardDisplay = function() {
     for (let tile of board.flat())
         tile.htmlElement.src = tile.imageURL;
 }
 
-RunGame.endTheGame = function (isTechnical) {
+RunGame.endTheGame = function(isTechnical) {
     isGameOver = true
 
     let isClientWon = isTechnical || !isClientTurn()
@@ -69,18 +68,13 @@ RunGame.endTheGame = function (isTechnical) {
     else {
         Title.annonceRegularGameEnd(isClientWon)
         Communication.emitEndGame(isClientWon)
-    }  
+    }
 }
 
-RunGame.test = function() {
-    console.log("yoyoyoyoyoyoyoyyo")
-}
 
 PrepareGame.prepareGame()
 identifiedToken((user) => {
     client = user
     Communication.emitEnterGamePage()
+
 })
-
-
-

@@ -7,21 +7,32 @@
     <link rel="stylesheet" type="text/css" href="styles/buttons.css">
 </head>
 
-<body>
-    <image id="imgOnCursor" width='0' height='0'>
+<body onbeforeunload="return ture">
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
+    <image id="imgOnCursor" width='0' height='0'></image>
+
+    <div id="pageContent">
         <div id="board">
             <div id="title">
-                <!-- text will be transplanted here by the JS code-->
+                <h3>
+                    Title
+                </h3>
+                <h4>
+                    Subtitle
+                </h4>
             </div>
-
             <!-- all images will be transplanted here by the JS code-->
         </div>
 
 
         <div id="menu">
             <div class="userInfo" id="blackPlayerInfo">
-                <h4>black player</h4>
-                <h3>rating</h3>
+                <h4 class="username">black player</h4>
+                <h3 class="rating">rating</h3>
             </div>
 
             <div id='buttons'>
@@ -34,27 +45,27 @@
             </div>
 
             <div class="userInfo" id="whitePlayerInfo">
-                <h4>white player</h4>
-                <h3>rating</h3>
+                <h4 class="username">white player</h4>
+                <h3 class="rating">rating</h3>
             </div>
-
         </div>
+    </div>
 
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="website-js/tokenHandler.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="website-js/tokenHandler.js"></script>
 
-        <script src="game-js/allVariables.js"></script>
-        <script src="game-js/prepareGame.js"></script>
-        <script src="game-js/cursorImg.js"></script>
-        <script src="game-js/title.js"></script>
-        <script src="game-js/tile.js"></script>
-        <script src="game-js/piece.js"></script>
-        <script src="game-js/moveClasses.js"></script>
-        <script src="game-js/calcMoveLegality.js"></script>
-        <script src="game-js/communication.js"></script>
-        <script src="game-js/playersInfo.js"></script>
-        <script src="game-js/runGame.js"></script>
+    <script src="game-js/allVariables.js"></script>
+    <script src="game-js/prepareGame.js"></script>
+    <script src="game-js/cursorImg.js"></script>
+    <script src="game-js/title.js"></script>
+    <script src="game-js/tile.js"></script>
+    <script src="game-js/piece.js"></script>
+    <script src="game-js/moveClasses.js"></script>
+    <script src="game-js/calcMoveLegality.js"></script>
+    <script src="game-js/communication.js"></script>
+    <script src="game-js/playersInfo.js"></script>
+    <script src="game-js/runGame.js"></script>
 
 </body>
 

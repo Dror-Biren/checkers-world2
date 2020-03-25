@@ -9,42 +9,51 @@
 </head>
 
 <body>
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
     <div id="pageContent">
         <div id="header">
             <h1 id="small">Welcome to the</h1>
             <h1>Checkers world of Dror</h1>
         </div>
         <div id="menu">
-            <img id="left" src="../Images/scroll.png">
-            <img id="middle" src="../Images/scroll.png">
-            <img id="right" src="../Images/scroll.png">
+            <img id="left" src="../Images/scroll.png ">
+            <img id="middle" src="../Images/scroll.png ">
+            <img id="right" src="../Images/scroll.png ">
 
             <div id="menuContent">
-                <h2>Sign-up for free!</h2>
+
+                <div id="menuTitle">
+                    <h2>Sign-up for free!</h2>
+                </div>
+
                 <form>
                     <label>user-name: <span class="dotted">---------</span> </label>
-                    <input type="text" name="username" placeholder="choose your username" required autocomplete="off">
+                    <input type="text" name="username" placeholder=" choose your username" required autocomplete="off">
                     <br>
 
-                    <label>password: <span class="dotted">-----------</span></label>
-                    <input type="password" name="password" placeholder=" choose your password " required autocomplete="off">
+                    <label>password: <span class="dotted ">-----------</span></label>
+                    <input type="password" name="password" placeholder=" choose your password" required autocomplete="off">
                     <br>
 
                     <label>confirm password: <span class="dotted">---</span></label>
-                    <input type="password" name="confirmPassword" placeholder="repeat your password" required autocomplete="off">
+                    <input type="password" name="confirmPassword" placeholder=" repeat your password" required autocomplete="off">
                     <br>
 
                     <label>email: <span class="dotted">--------------</span></label>
                     <input type="text" name="email" placeholder=" your email here" required>
                     <br>
 
-                    <button type="button" id="send" onclick="submitForm('signUp')">
-                        send
+                    <button type="button" class="mainButton smallMargin" onclick="submitForm('signUp')">
+                        Send
                     </button>
 
                     <h3>already have an account?</h3>
 
-                    <button type="button " id="clickHere " onclick="animateShiftPage( 'logIn') ">
+                    <button type="button" class="smallButton" onclick="animateShiftPage('logIn')">
                             click here!
                     </button>
                 </form>
@@ -52,10 +61,10 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js "></script>
-    <script src="website-js/tokenHandler.js "></script>
-    <script src="website-js/submitForms.js "></script>
-    <script src="website-js/scrollAnimate.js "></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="website-js/tokenHandler.js"></script>
+    <script src="website-js/submitForms.js"></script>
+    <script src="website-js/scrollAnimate.js"></script>
 </body>
 
 </html>

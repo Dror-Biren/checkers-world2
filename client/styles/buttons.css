@@ -1,79 +1,96 @@
-button {
-    color: darkslategray;
-    background-color: rgba(228, 188, 157, 0.459);
-    border-radius: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 0.5vmin groove Peru;
-}
-
-button:hover {
-    font-weight: 900;
-    background-color: lightpink;
-    cursor: pointer;
-    border: 0.5vmin groove saddlebrown;
-}
-
-button:active {
-    background-color: indianred;
-}
-
-.gameButton {
-    border-radius: 30%;
-    font-size: 2.4vmin;
-    width: 19vmin;
-    height: 9vmin;
-    margin-top: 18%;
-    margin-bottom: 18%;
-}
-
-.mainButton {
-    font-size: 2.5vmin;
-    font-weight: 100;
-    border: 0.3vmin groove rgba(202, 138, 73, 0.726);
-    background-color: rgba(241, 221, 193, 0.527);
-    width: 40%;
-    height: 7vmin;
-    margin-top: 5%;
-    margin: 2% auto 2% auto;
-    color: Sienna;
-}
-
-#logOut {
-    position: absolute;
-    background-color: rgba(207, 207, 207, 0.534);
-    border: 0.2vmin solid rgba(88, 88, 88, 0.774);
-    font-size: 2.5vmin;
-    width: 12%;
-    height: 7vmin;
-    right: 10%;
-    bottom: 15%;
-}
-
-#clickHere {
-    font-size: 2.5vmin;
-    margin-left: 3%;
-    margin-top: 2%;
-    display: inline;
-    font-size: 2vmin;
-    height: 5vmin;
-    width: 15%;
-    border-width: 0.2vmin;
-}
-
-#send {
-    font-size: 2.8vmin;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0.5%;
-    margin-bottom: 2%;
-    height: 6vmin;
-    width: 20%;
-    border-width: 0.3vmin;
-}
-
-.bigMargin {
-    margin-top: 50%;
-}
+    button {
+        color: darkslategray;
+        background-color: rgba(228, 188, 157, 0.589);
+        border-radius: 15%;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 0.15em groove Peru;
+    }
+    
+    button:hover {
+        font-weight: 800;
+        background-color: lightpink;
+        cursor: pointer;
+        border: 0.2em groove saddlebrown;
+    }
+    
+    button:active {
+        background-color: indianred;
+    }
+    
+    .gameButton {
+        border-radius: 30%;
+        font-size: calc(1.2 * min(1.75vw, 2vh));
+        width: 100%;
+        height: 10vmin;
+        margin-top: 18%;
+        margin-bottom: 18%;
+    }
+    
+    .mainButton {
+        font-size: calc(2.2 * min(1vw, 1.25vh));
+        font-weight: 100;
+        border: 0.15em groove rgba(202, 138, 73, 0.726);
+        background-color: rgba(241, 221, 193, 0.527);
+        width: 33%;
+        height: 7vh;
+        margin: 4% auto 4% auto;
+        color: Sienna;
+    }
+    
+    .smallMargin {
+        margin: 1% auto 3% auto;
+    }
+    
+    #logOut {
+        position: absolute;
+        background-color: rgba(207, 207, 207, 0.534);
+        border: 0.1em solid rgba(88, 88, 88, 0.774);
+        font-size: calc(2.2 * min(1vw, 1.25vh));
+        width: 14%;
+        height: 7%;
+        right: 10%;
+        bottom: 15%;
+    }
+    
+    .smallButton {
+        font-size: calc(1.7 * min(1vw, 1.25vh));
+        margin-left: 3%;
+        margin-top: 2%;
+        display: inline;
+        height: 4vh;
+        width: 16%;
+        border-width: 0.2%;
+    }
+    
+    .bigMargin {
+        margin-top: 9%;
+    }
+    
+    .developer {
+        font-size: calc(2 * (1vw - 0.7vh));
+        position: absolute;
+        background-color: black;
+        color: greenyellow;
+        height: 20%;
+        width: calc(30 * (1vw - 0.7vh));
+        top: 2vmax;
+        right: 2vmax;
+    }
+    
+    .developer:hover {
+        background-color: rgb(61, 61, 61);
+    }
+    /*   
+     #send {
+        font-size: 2.8%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0.5%;
+        margin-bottom: 2%;
+        height: 6%;
+        width: 20%;
+        border-width: 0.3%;
+    }

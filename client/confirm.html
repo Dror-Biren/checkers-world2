@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <button class="developer" onclick="window.open('forDeveloper.html')">
+        Only in development mode !!!
+        Interface to database operations
+    </button>
+
     <div id="pageContent">
         <div id="header">
             <h1 id="small">Welcome to the</h1>
@@ -20,27 +25,36 @@
             <img id="right" src="../Images/scroll.png">
 
             <div id="menuContent">
-                <h2> </h2>
-                <h3>
-                    Please enter the confirm code sent to your email to continue:
-                    <br> (If you don't see the email, try searching your spam folder)
-                </h3>
+
+                <div id="menuTitle">
+                    <h2> </h2>
+                    <h3>
+                        Please enter the confirm code sent to your email:
+                    </h3>
+                    <h4> (If you don't see the email, try searching your spam folder)
+                    </h4>
+                </div>
+
                 <form>
                     <label>Your confirm code: </label>
-                    <input type="text" name="confirmCode" placeholder=" Type here..." required>
-                    <br>
+                    <input type="text" id="input" placeholder=" Type here..." required autocomplete="off">
 
-                    <button type="button" id="send" onclick="submitForm('logIn')">
+
+                    <button type="button" class="smallButton" onclick="confirmCode()">
+                        Send
+                    </button>
+
+                    <button type="button" class="smallMargin mainButton" onclick="sendEmailAgain()">
                         Send email again
                     </button>
 
-                    <h3>Want to open a new account?</h3>
-                    <button type="button" id="clickHere" class="bigMargin" onclick="animateShiftPage('index')">
+                    <label>Want to open a new account?</label>
+                    <button type="button" class="smallButton" onclick="animateShiftPage('index')">
                         click here!
                     </button>
-
-                    <h3>Want to log in from another account?</h3>
-                    <button type="button" id="clickHere" onclick="animateShiftPage('index')">
+                    <br>
+                    <label>Want to log in from another account?</label>
+                    <button type="button" class="smallButton" onclick="animateShiftPage('logIn')">
                         click here!
                     </button>
                 </form>
@@ -51,7 +65,7 @@
     <script src="/socket.io/socket.io.js "></script>
     <script src="website-js/scrollAnimate.js "></script>
     <script src="website-js/tokenHandler.js "></script>
-    <script src="website-js/submitForms.js "></script>
+    <script src="website-js/confirm.js "></script>
 </body>
 
 </html>

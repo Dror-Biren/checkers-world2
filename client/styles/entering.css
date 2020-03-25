@@ -1,48 +1,54 @@
 #pageContent {
-    height: 100%;
-    width: 65%;
-    margin: 0px;
-    padding: 0px;
+    width: 110vh;
+    max-width: 90%;
 }
 
 h1 {
     text-align: center;
-    font-size: 6.5vmin;
+    font-size: calc(5.2 * min(1vw, 1.25vh));
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    color:WhiteSmoke;
+    color: WhiteSmoke;
     text-shadow: 1px 1px 3px black, 0 0 25px rgb(190, 167, 61), 0 0 4px rgb(141, 26, 26);
     letter-spacing: 4px;
 }
 
 h1#small {
     text-align: center;
-    font-size: 5vmin;
+    font-size: calc(4.5 * min(1vw, 1.25vh));
     color: rgb(235, 238, 203);
-    
-    padding-top: 1.5%;
+    margin-top: 0;
     margin-bottom: -4%;
-    
     letter-spacing: 0px;
 }
 
-h2,h3,label {
+h2,
+h3,
+h4,
+label {
     font-family: Andale Mono, monospace;
     color: darkslategray;
 }
 
 h2 {
-    font-size: 4.5vmin;
+    font-size: calc(3.5 * min(1vw, 1.25vh));
     font-weight: 500;
+    margin-bottom: 2%;
 }
 
 h3 {
-    font-size: 2.8vmin;
+    font-size: calc(2.5 * min(1vw, 1.25vh));
     font-weight: 400;
     display: inline;
 }
 
+h4 {
+    font-weight: 400;
+    font-size: calc(2 * min(1vw, 1.25vh));
+    margin-top: 1%;
+}
+
 label {
-    font-size: 2.4vmin;
+    font-size: calc(2.2 * min(1vw, 1.25vh));
 }
 
 .dotted {
@@ -52,31 +58,36 @@ label {
 
 input {
     width: 30%;
-    height: 2vh;
+    height: 1.5vw;
     margin-bottom: 3%;
+}
+
+#input {
+    display: inline;
 }
 
 div#menu {
     padding-left: 5%;
-    /*padding-top: 0%;*/
-    width: 83%;
-    height: 70%;
-    margin-top: 2%;
-    margin-left: 5%;
+    height: 78%;
+    margin-top: -2%;
     position: relative;
 }
 
+div#menuTitle {
+    margin-top: 0;
+    margin-bottom: 4%;
+}
 
 div#menuContent {
-    padding-top: 7%;
+    padding-top: 7.5vh;
     padding-right: 5%;
-    height: 80%;
+    height: 83%;
     justify-content: center;
     align-items: center;
     text-align: center;
     visibility: hidden;
+    /*border: 2px solid blue*/
 }
-
 
 img#right {
     clip-path: inset(0% 0% 0% 93.7%);
@@ -85,7 +96,6 @@ img#right {
 img#left {
     clip-path: inset(0% 93% 0% 0%);
 }
-
 
 img {
     z-index: -1;
@@ -97,5 +107,6 @@ img {
     visibility: hidden;
 }
 
-
-
+::placeholder {
+    font-size: calc(1.8 * min(1vw, 1.25vh));
+}

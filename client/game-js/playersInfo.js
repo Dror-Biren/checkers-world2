@@ -12,8 +12,8 @@ PlayersInfo.flipOrder = function() {
 }
 
 PlayersInfo.setText = function() {
-    const clientInfo = isClientWhite? whitePlayerInfo : blackPlayerInfo
-    const opponentInfo = isClientWhite? blackPlayerInfo : whitePlayerInfo
+    const clientInfo = isClientWhite ? whitePlayerInfo : blackPlayerInfo
+    const opponentInfo = isClientWhite ? blackPlayerInfo : whitePlayerInfo
 
     clientInfo.children[0].innerHTML = client.username
     clientInfo.children[1].innerHTML = parseInt(client.rating)
@@ -22,16 +22,18 @@ PlayersInfo.setText = function() {
 }
 
 PlayersInfo.updateRating = function(ratingChange) {
-    const clientInfo = isClientWhite? whitePlayerInfo : blackPlayerInfo
-    const opponentInfo = isClientWhite? blackPlayerInfo : whitePlayerInfo
+    const clientInfo = isClientWhite ? whitePlayerInfo : blackPlayerInfo
+    const opponentInfo = isClientWhite ? blackPlayerInfo : whitePlayerInfo
 
     ratingChange = parseInt(ratingChange)
-    let opponentRatingChange = -ratingChange
+
+    clientInfo.children[1].innerHTML += PlayersInfo.creatRatingChangeText(ratingChange)
+    opponentInfo.children[1].innerHTML += PlayersInfo.creatRatingChangeText(-ratingChange)
+}
+
+PlayersInfo.creatRatingChangeText = function(ratingChange) {
     if (ratingChange >= 0)
-        ratingChange = "+"+ratingChange
-    if (opponentRatingChange >= 0)
-        opponentRatingChange = "+"+opponentRatingChange
-    clientInfo.children[1].innerHTML += "<br>"+ratingChange
-    opponentInfo.children[1].innerHTML += "<br>"+opponentRatingChange
-    
+        ratingChange = "+" + ratingChange
+    const textColor = ratingChange >= 0 ? "green" : "red"
+    return `<span style="color:${textColor}"> ${ratingChange}</span>`
 }

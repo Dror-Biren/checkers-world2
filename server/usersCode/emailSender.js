@@ -1,27 +1,18 @@
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-async function sendConfirmEmail(email, username) {
-    const codeToConfirm = generateRandomCode()
+async function sendConfirmEmail(user) {
     await sgMail.send({
-        to: email,
+        to: user.email,
         from: 'drorcheckersworld@gmail.com',
         subject: 'Your login code to checkers-world',
-        text: `Hi ${username}!\n` +
+        text: `Hi ${user.username}!\n` +
             `Thanks for joining in :)\n\n` +
-            `your login code is ${codeToConfirm}.\n\n` +
+            `your login code is ${user.codeToConfirm}.\n\n` +
             `A wonderful world of checkers is waiting just for you.\n` +
             `We hope you like it!\n` +
             `Checkers-world-of-Dror Team.`
     })
-    return codeToConfirm
-}
-
-function generateRandomCode() {
-    let code = ''
-    for (let i = 0; i < process.env.LOGIN_CODE_LENGTH; i++)
-        code += parseInt(Math.random() * 10)
-    return code
 }
 
 module.exports = sendConfirmEmail
