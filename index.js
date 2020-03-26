@@ -1,8 +1,9 @@
-const io = require('./boringConfig/appInit')
-const startSiteEventsListening = require('./eventsListeners/siteEvents')
-const startDeveloperEventsListening = require('./eventsListeners/developerEvents')
+const io = require('./server/boringConfig/appInit')
+const startSiteEventsListening = require('./server/eventsListeners/siteEvents')
+const startDeveloperEventsListening = require('./server/eventsListeners/developerEvents')
 
 io.on('connection', (socket) => {
+    console.log("---"+process.env.PORT)
     console.log(`New socket connection  (id: ${socket.id})`)
     startSiteEventsListening(socket)
     if (process.env.DEV_MODE === "true")
