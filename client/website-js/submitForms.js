@@ -1,6 +1,7 @@
 const socket = io()
 
 function submitForm(emitName) {
+    console.log("submit form:",emitName)
     socket.emit(emitName, getFormData(), (error, token) => {
         if (error)
             return alert(error)
