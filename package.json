@@ -1,32 +1,28 @@
 {
-  "name": "checkers-world-of-dror",
-  "version": "0.3.0",
-  "description": "checkers site",
-  "engines": {
-    "node": "12.x"
-  },
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
-  },
-  "dependencies": {
-    "ejs": "^2.5.6",
-    "express": "^4.15.2",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
-    "request": "^2.81.0",
-    "tape": "^4.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Dror-Biren/checkers-world2"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+    "name": "checkers-world-of-dror",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@sendgrid/mail": "^6.5.3",
+        "bcryptjs": "^2.4.3",
+        "bluebird": "^3.7.2",
+        "dnode": "^1.2.2",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^3.5.3",
+        "mongoose": "^5.9.2",
+        "node-gyp": "^6.1.0",
+        "rebuild": "^0.1.2",
+        "request": "^2.88.2",
+        "socket.io": "^2.3.0",
+        "validator": "^12.2.0"
+    },
+    "devDependencies": {},
+    "description": ""
 }
