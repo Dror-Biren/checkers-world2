@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
+  "name": "checkers-world-of-dror",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "checkers site",
   "engines": {
     "node": "12.x"
   },
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "request": "^2.81.0",

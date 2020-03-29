@@ -1,7 +1,9 @@
 
 require("dotenv").config({})
 const http = require('http')
+const path = require('path')
 const express = require('express')
+//console.log(express)
 const socketio = require('socket.io')
 
 const app = express()
@@ -10,11 +12,20 @@ const io = socketio(server)
 
 const port = process.env.PORT || 3000
 
+/*
 app.get('/', function(req, res) {
+    //res.render('./index')
     res.send(200);
-  });
+});
+*/
 
-app.use(express.static('../client'))
+const publicDirectoryPath = path.join(__dirname, '../../client')
+console.log(publicDirectoryPath)
+
+
+//app.use(express.static("C:\Users\דרור\Desktop\checkers-world2\client"))
+
+app.use(express.static(publicDirectoryPath))
 
 //socketio.listen(server)
 
