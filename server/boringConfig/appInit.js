@@ -3,7 +3,6 @@ require("dotenv").config({})
 const http = require('http')
 const path = require('path')
 const express = require('express')
-//console.log(express)
 const socketio = require('socket.io')
 
 const app = express()
@@ -23,7 +22,6 @@ const publicDirectoryPath = path.join(__dirname, '../../client')
 console.log(publicDirectoryPath)
 
 
-//app.use(express.static("C:\Users\דרור\Desktop\checkers-world2\client"))
 
 app.use(express.static(publicDirectoryPath))
 
