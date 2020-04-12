@@ -1,15 +1,15 @@
 const { updateUserRating } = require('../usersCode/userOperations')
+const { startNewGame } = require('./matchPlayersForGame')
 
 function startGameEventsListening(user, opponent, socket, opponentSocket) {
-    const opponentRatingAtGameStart = opponent.rating
 
     socket.on('clientPlayedMove', async(move, callback) => {
         try {
-            console.log(`user "${user.username}" played:`, move)
+            console.log(`User "${user.username}" played:`, move)
             await opponentSocket.emit('opponentPlayedMove', move, (error) => {
                 if (error)
-                    throw new Error(`user "${opponent.username}" failed to received opponent move`)
-                console.log(`user "${opponent.username}" successfully received opponent move`)
+                    throw new Error(`User "${opponent.username}" failed to received opponent move`)
+                console.log(`User "${opponent.username}" successfully received opponent move`)
             })
             callback()
         } catch (error) {
@@ -20,11 +20,25 @@ function startGameEventsListening(user, opponent, socket, opponentSocket) {
     socket.on('gameEnd', async(isUserWon, callback) => {
         try {
             const status = isUserWon ? "win" : "lose"
-            console.log(`user "${user.username}" has ${status} against "${opponent.username}"`)
+            console.log(`User "${user.username}" has ${status} against "${opponent.username}"`)
             const ratingChange = await updateUserRating(
-                user, opponentRatingAtGameStart, isUserWon)
+                user, opponentSocket.ratingAtGameStart, isUserWon)
             callback(undefined, ratingChange)
         } catch (error) {
+            callback(error.message)
+        }
+    })
+
+    socket.on('requestRematch', async(callback) => {
+        try {      
+            console.log(`User "${user.username}" request a rematch`)
+            if (socket.requestRematch)
+                startNewGame(socket, user, opponentSocket, opponent)
+            else
+                opponentSocket.requestRematch = true        
+            callback()
+        }
+        catch(error) {
             callback(error.message)
         }
     })
@@ -32,13 +46,12 @@ function startGameEventsListening(user, opponent, socket, opponentSocket) {
     socket.on('disconnect', async() => {
         console.log(`User "${user.username}" lost against "${opponent.username}" 'due to disconnection`)
         const ratingChange = await updateUserRating(opponent, user.rating, true)
-        updateUserRating(opponent, user.rating, true)
-        updateUserRating(user, opponentRatingAtGameStart, false)
+        updateUserRating(user, opponentSocket.ratingAtGameStart, false)
 
         opponentSocket.emit('opponentDisconnect', ratingChange, (error) => {
             if (error)
-                throw new Error(`user "${opponent.username}" failed to recived opponent-disconnect-message`)
-            console.log(`user "${opponent.username}" recived opponent-disconnect-message successfully`)
+                throw new Error(`User "${opponent.username}" failed to recived opponent-disconnect-message`)
+            console.log(`User "${opponent.username}" recived opponent-disconnect-message successfully`)
         })
     })
 

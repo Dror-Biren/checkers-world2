@@ -1,29 +1,31 @@
 let client
 let opponent
-let isClientWhite = true;
-const isClientTurn = () => isClientWhite === isWhiteTurn;
+let isClientWhite = true
+const isClientTurn = () => isClientWhite === isWhiteTurn
 
-let board = [];
-let clicked = { tile: null, prvTile: null };
-let prvMovingPiece;
+let board = []
+let clicked = { tile: null, prvTile: null }
+let prvMovingPiece
 
-let isWhiteTurn;
-let isFirstStepOfTurn;
-let isGameStart;
-let isGameOver;
-let isBoardUpsideDown;
-let isCapturePossible;
-let isDoubleCapture;
+let isWhiteTurn
+let isFirstStepOfTurn
+let isGameStart
+let isGameOver
+let isBoardUpsideDown
+let isCapturePossible
+let isDoubleCapture
 
 
+const socket = io()
 
-const imgOnCursor = document.getElementById("imgOnCursor");
+const rematchButton = document.getElementById("rematch")
+const imgOnCursor = document.getElementById("imgOnCursor")
 const blackPlayerInfo = document.getElementById("blackPlayerInfo")
 const whitePlayerInfo = document.getElementById("whitePlayerInfo")
 
-const beginInPositionNum = 0;
+const beginInPositionNum = 3
 const boardHeight = 8,
-    boardWidth = 8;
+    boardWidth = 8
 
 const imgsUrl = {
     FOLDER_NAME: "../Images/",
@@ -51,7 +53,8 @@ const pieceDisplay = {
 
 const messages = {
     BEFORE_GAME: "Waiting for a match",
-    BEFORE_GAME_SUB: (dotsAmount) => "looking for user who wants to play" + ".".repeat(dotsAmount),
+    BEFORE_GAME_SUB: (dotsAmount) => "Looking for user who wants to play" + ".".repeat(dotsAmount),
+    BEFORE_REMATCH: "Rematch request sended",
     STARTING_WHITE: "You got the white pieces",
     STARTING_BLACK: "You got the black pieces",
     WIN: "You have won!",
@@ -62,7 +65,7 @@ const messages = {
     LOSE_SUB: "Sorry...",
 
     OPPONENT_TURN: "Opponent turn",
-    OPPONENT_TURN_SUB: (dotsAmount) => "waiting for opponent" + ".".repeat(dotsAmount),
+    OPPONENT_TURN_SUB: (dotsAmount) => "Waiting for opponent" + ".".repeat(dotsAmount),
     CLIENT_TURN: "Your turn",
     POLITE_OPEN: "Please ",
     FIRST_STEP: "select a piece to move with",

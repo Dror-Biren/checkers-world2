@@ -32,7 +32,7 @@ label {
 h2 {
     font-size: calc(3.5 * min(1vw, 1.25vh));
     font-weight: 500;
-    margin-bottom: 2%;
+    margin-bottom: calc(2 * min(1vw, 1.25vh));
 }
 
 h3 {
@@ -44,7 +44,7 @@ h3 {
 h4 {
     font-weight: 400;
     font-size: calc(2 * min(1vw, 1.25vh));
-    margin-top: 1%;
+    margin-top:  calc(1 * min(1vw, 1.25vh));
 }
 
 label {
@@ -59,7 +59,8 @@ label {
 input {
     width: 30%;
     height: 1.5vw;
-    margin-bottom: 3%;
+    margin-bottom: calc(2 * min(1vw, 1.25vh));
+    font-size: calc(1.8 * min(1vw, 1.25vh));
 }
 
 #input {
@@ -68,8 +69,9 @@ input {
 
 div#menu {
     padding-left: 5%;
-    height: 78%;
-    margin-top: -2%;
+    height: calc(66 * min(1vw, 1.1vh));
+    margin-top: calc(-2 *(vw - vh));
+    bottom: 0%;
     position: relative;
 }
 
@@ -79,7 +81,7 @@ div#menuTitle {
 }
 
 div#menuContent {
-    padding-top: 7.5vh;
+    padding-top: calc(6 * min(1vw, 1.25vh));
     padding-right: 5%;
     height: 83%;
     justify-content: center;

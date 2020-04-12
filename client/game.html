@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="Images/logo2.png">
 </head>
 
-<body onbeforeunload="return ture">
+<body>
     <button class="developer" onclick="window.open('forDeveloper.html')">
         Only in development mode !!!
         Interface to database operations
@@ -44,6 +44,9 @@
                 <button class='gameButton' onclick="shiftPageAndPreserveToken('mainPage')">
                     Leave game
                 </button>
+                <button id='rematch' class='gameButton' onclick="Emits.emitRequestRematch()">
+                    Rematch
+                </button>
             </div>
 
             <div class="userInfo" id="whitePlayerInfo">
@@ -65,7 +68,8 @@
     <script src="game-js/piece.js"></script>
     <script src="game-js/moveClasses.js"></script>
     <script src="game-js/calcMoveLegality.js"></script>
-    <script src="game-js/communication.js"></script>
+    <script src="game-js/Emits.js"></script>
+    <script src="game-js/socketEventsListner.js"></script>
     <script src="game-js/playersInfo.js"></script>
     <script src="game-js/runGame.js"></script>
 

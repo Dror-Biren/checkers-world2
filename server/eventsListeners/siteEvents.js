@@ -54,7 +54,7 @@ function startSiteEventsListening(socket) {
     socket.on('requestNewGame', async(token, callback) => {
         try {
             const user = await findUserByToken(token)
-            console.log(`user "${user.username}" request to start new game`)
+            console.log(`User "${user.username}" request to start new game`)
             user.isNewGameRequested = true
             await user.save()
             callback()
@@ -66,7 +66,7 @@ function startSiteEventsListening(socket) {
     socket.on('enterGamePage', async(token, callback) => {
         try {
             const user = await findUserByToken(token)
-            console.log(`user "${user.username}" enter game page`)
+            console.log(`User "${user.username}" enter game page`)
             if (!user.isNewGameRequested)
                 return callback(undefined, false)
             user.isNewGameRequested = false

@@ -36,6 +36,9 @@ async function updateUserRating(user, opponentRating, isUserWon) {
     const ratingChange = calcRatingChange(user.rating, opponentRating, isUserWon)
 
     user.rating += ratingChange
+    const ratingAction = ratingChange > 0 ? "gain" : "lost"
+    const intRatingChange = Math.abs(parseInt(ratingChange))
+    console.log(`User "${user.username}" have ${ratingAction} ${intRatingChange} rating points`)
     await user.save()
     return ratingChange
 }

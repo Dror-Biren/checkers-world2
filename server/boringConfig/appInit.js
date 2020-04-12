@@ -14,8 +14,8 @@ const port = process.env.PORT || 3000
 /*
 app.get('/', function(req, res) {
     //res.render('./index')
-    res.send(200);
-});
+    res.send(200)
+})
 */
 
 const publicDirectoryPath = path.join(__dirname, '../../client')

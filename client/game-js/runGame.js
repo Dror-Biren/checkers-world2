@@ -1,14 +1,14 @@
-let RunGame = {};
+let RunGame = {}
 
 RunGame.flipBoard = function() {
-    isBoardUpsideDown = !isBoardUpsideDown;
-    RunGame.updateBoardDisplay();
+    isBoardUpsideDown = !isBoardUpsideDown
+    RunGame.updateBoardDisplay()
     PlayersInfo.flipOrder()
 }
 
 RunGame.tileWasClicked = function(row, column) {
     if (isGameOver || !isGameStart)
-        return;
+        return
 
     if (!isClientTurn())
         return alert(messages.ERROR.NOT_CLIENT_TURN)
@@ -17,57 +17,59 @@ RunGame.tileWasClicked = function(row, column) {
 }
 
 RunGame.tileWasClickedInCorrectTime = function(row, column) {
-    clicked.tile = Tile.getTileByPosition(row, column);
+    clicked.tile = Tile.getTileByPosition(row, column)
 
     if (!isDoubleCapture)
-        CursorImg.setImgOnCursorToTileContent(clicked.tile);
-    clicked.tile.enableAllTilesPointEventExceptThis();
+        CursorImg.setImgOnCursorToTileContent(clicked.tile)
+    clicked.tile.enableAllTilesPointEventExceptThis()
 
-    RunGame.executeClick();
+    RunGame.executeClick()
 }
 
 RunGame.executeClick = function() {
     let move = isFirstStepOfTurn ?
         CalcMoveLegality.getFirstStepMoveLegality() :
-        CalcMoveLegality.getSecondStepMoveLegality();
+        CalcMoveLegality.getSecondStepMoveLegality()
     if (move instanceof IllegalMove) {
         if (isClientTurn())
-            move.explainErrorToUser();
+            move.explainErrorToUser()
         if (!isDoubleCapture)
-            move.setTurnToFirstStep();
+            move.setTurnToFirstStep()
     } else
         RunGame.executeLegalClick(move)
 }
 
 RunGame.executeLegalClick = function(move) {
     if (!isFirstStepOfTurn && isClientTurn()) {
-        Communication.emitMove();
-        Title.waitingToOpponent();
+        Emits.emitMove()
+        Title.waitingToOpponent()
     }
 
-    move.executStep();
-    RunGame.updateBoardDisplay();
+    move.executStep()
+    RunGame.updateBoardDisplay()
 
     if (!isDoubleCapture)
-        isFirstStepOfTurn = !isFirstStepOfTurn;
+        isFirstStepOfTurn = !isFirstStepOfTurn
     else
-        Title.writeInstructionsForNextClick();
+        Title.writeInstructionsForNextClick()
 }
 
 RunGame.updateBoardDisplay = function() {
     for (let tile of board.flat())
-        tile.htmlElement.src = tile.imageURL;
+        tile.htmlElement.src = tile.imageURL
 }
 
 RunGame.endTheGame = function(isTechnical) {
     isGameOver = true
+    isGameStart = false //for next game
+    rematchButton.disabled = false
 
     let isClientWon = isTechnical || !isClientTurn()
     if (isTechnical)
         Title.annonceTechnicalGameEnd()
     else {
         Title.annonceRegularGameEnd(isClientWon)
-        Communication.emitEndGame(isClientWon)
+        Emits.emitEndGame(isClientWon)
     }
 }
 
@@ -75,6 +77,8 @@ RunGame.endTheGame = function(isTechnical) {
 PrepareGame.prepareGame()
 identifiedToken((user) => {
     client = user
-    Communication.emitEnterGamePage()
-
+    Emits.emitEnterGamePage()
+    window.onbeforeunload = function() {
+        return true
+    }
 })

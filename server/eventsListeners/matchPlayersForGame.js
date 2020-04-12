@@ -23,16 +23,28 @@ function matchWasFound(socket, user) {
 }
 
 function startNewGame(socket1, user1, socket2, user2) {
-    const callback = function(error) {
-        const usersString = `${user1.username}, ${user2.username}`
-        if (error)
-            throw new Error(`failed to init game between users: ${usersString}`)
-        console.log(`game was successfuly init between users: ${usersString}`)
+    console.log(user1.username+" : "+user1.rating)
+    console.log(user2.username+" : "+user2.rating)
+
+    socket1.requestRematch = socket2.requestRematch = false
+    
+    socket1.ratingAtGameStart = user1.rating
+    socket2.ratingAtGameStart = user2.rating
+
+    const createCallback = function ({ username }) {
+        const usersString = user1.username + " vs " + user2.username
+        return function (error) {
+            if (error)
+                throw new Error(`failed to init game at user "${username}" (${usersString})`)
+            console.log(`Game was successfuly init at user: ${username} (${usersString})`)
+        }
     }
 
     const isUser1White = Math.random() < 0.5
-    socket1.emit('initGame', isUser1White, user2, callback)
-    socket2.emit('initGame', !isUser1White, user1, callback)
+    socket1.emit('initGame', isUser1White, user1.rating, user2, createCallback(user1))
+    socket2.emit('initGame', !isUser1White, user2.rating, user1, createCallback(user2))
+    
+    
 }
 
 function userHasDisconnectedInGamePage(user) {
@@ -40,4 +52,4 @@ function userHasDisconnectedInGamePage(user) {
         waitingForMatch = null
 }
 
-module.exports = { lookForMatchOpponent, userHasDisconnectedInGamePage }
+module.exports = { lookForMatchOpponent, userHasDisconnectedInGamePage, startNewGame }
