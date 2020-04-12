@@ -23,7 +23,7 @@ const imgOnCursor = document.getElementById("imgOnCursor")
 const blackPlayerInfo = document.getElementById("blackPlayerInfo")
 const whitePlayerInfo = document.getElementById("whitePlayerInfo")
 
-const beginInPositionNum = 3
+const beginInPositionNum = 0
 const boardHeight = 8,
     boardWidth = 8
 
