@@ -72,12 +72,13 @@ function startSiteEventsListening(socket) {
             user.isNewGameRequested = false
             await user.save()
 
-            socket.on('disconnect', () => dontMatchDissconctedUser(user))
             const match = lookForMatchOpponent(socket, user)
             if (match) {
                 startGameEventsListening(user, match.user, socket, match.socket)
                 startGameEventsListening(match.user, user, match.socket, socket)
             }
+            socket.on('disconnect', () => dontMatchDissconctedUser(user))
+            
             callback(undefined, true)
         } catch (error) {
             //console.log(error)

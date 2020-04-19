@@ -75,10 +75,17 @@ RunGame.endTheGame = function(isTechnical) {
 
 
 PrepareGame.prepareGame()
+/*
+window.onbeforeunload = function() {
+    return false
+}
+*/
 identifiedToken((user) => {
     client = user
     Emits.emitEnterGamePage()
-    window.onbeforeunload = function() {
-        return true
-    }
+    
+    setTimeout(() =>
+        window.onbeforeunload = function() {
+            return true
+        }  ,3000)
 })

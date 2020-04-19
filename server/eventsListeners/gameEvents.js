@@ -46,7 +46,7 @@ function startGameEventsListening(user, opponent, socket, opponentSocket) {
 
     socket.on('disconnect', async() => {
         if (!socket.gameInProgress)
-            return
+            return console.log(`User "${user.username}" have dissconcted (after his game against "${opponent.username}" was over)`)
 
         socket.gameInProgress = opponentSocket.gameInProgress = false
         console.log(`User "${user.username}" lost against "${opponent.username}" 'due to disconnection`)

@@ -1,11 +1,17 @@
 let waitingForMatch = null
 
 function lookForMatchOpponent(socket, user) {
+    //console.log(0)
+
     if (waitingForMatch === null)
         return waitForMatch(socket, user)
 
-    if (user.username === waitingForMatch.user.username)
+    //console.log("1---"+user.username)
+    //console.log("2---"+waitingForMatch.user.username)
+    if (user.username === waitingForMatch.user.username) {
+        console.log(`User "${user.username}" can not match to a game with himself`)
         throw new Error('ERROR: opening parallel games')
+    }
 
     return matchWasFound(socket, user)
 }
@@ -44,8 +50,6 @@ function startNewGame(socket1, user1, socket2, user2) {
     const isUser1White = Math.random() < 0.5
     socket1.emit('initGame', isUser1White, user1.rating, user2, createCallback(user1))
     socket2.emit('initGame', !isUser1White, user2.rating, user1, createCallback(user2))
-    
-    
 }
 
 function dontMatchDissconctedUser(user) {
