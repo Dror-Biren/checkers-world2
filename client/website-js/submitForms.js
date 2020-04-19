@@ -17,3 +17,4 @@ function getFormData() {
             fieldsData[field.name] = field.value
     return fieldsData
 }
+

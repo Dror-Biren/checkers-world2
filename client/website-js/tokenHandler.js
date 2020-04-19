@@ -28,3 +28,5 @@ function shiftPageAndPreserveToken(pageName, token = getToken()) {
         newUrl += '?' + token
     window.location.href = newUrl
 }
+
+

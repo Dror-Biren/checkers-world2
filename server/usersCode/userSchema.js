@@ -9,32 +9,29 @@ const jwt = require('jsonwebtoken')
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        minlength: 3,
-        maxlength: 11,
+        minlength: [3,' is too short- Must contain at least 3 characters'],
+        maxlength: [10,' is too long- Must contain at most 10 characters'],
         unique: true,
-        required: true,
+        required: [true, "is required"],
         trim: true
     },
     email: {
         type: String,
         unique: true,
-        required: true,
+        required: [true, "is required"],
         trim: true,
         lowercase: true,
         validate(value) {
             if (!validator.isEmail(value))
-                throw new Error('Email is invalid')
+                throw new Error(' is invalid')
         }
     },
     password: {
         type: String,
-        required: true,
-        minlength: 7,
-        trim: true,
-        validate(value) {
-            if (value.toLowerCase().includes('password') || value.includes('1234'))
-                throw new Error('Password too weak')
-        }
+        required: [true, " is required"],
+        minlength: [6,' is too short- Must contain at least 6 characters'],
+        maxlength: [15,' is too long- Must contain at most 15 characters'],
+        trim: true
     },
     rating: {
         type: Number,
@@ -62,6 +59,14 @@ const userSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
+
+userSchema.post('save', function(error, doc, next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+      next(new Error("That username or email already exists in our system"));
+    } else {
+      next(error);
+    }
+  });
 
 userSchema.methods.toJSON = function() {
     const user = this
