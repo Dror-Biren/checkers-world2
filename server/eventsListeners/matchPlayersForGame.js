@@ -23,10 +23,11 @@ function matchWasFound(socket, user) {
 }
 
 function startNewGame(socket1, user1, socket2, user2) {
-    console.log(user1.username+" : "+user1.rating)
-    console.log(user2.username+" : "+user2.rating)
+    console.log("Try to start new game between:")
+    console.log(`${user1.username} (${user1.rating})  -vs-  ${user2.username} (${user2.rating})`)
 
     socket1.requestRematch = socket2.requestRematch = false
+    socket1.gameInProgress = socket2.gameInProgress = true
     
     socket1.ratingAtGameStart = user1.rating
     socket2.ratingAtGameStart = user2.rating
@@ -47,9 +48,9 @@ function startNewGame(socket1, user1, socket2, user2) {
     
 }
 
-function userHasDisconnectedInGamePage(user) {
+function dontMatchDissconctedUser(user) {
     if (waitingForMatch && user.username === waitingForMatch.user.username)
         waitingForMatch = null
 }
 
-module.exports = { lookForMatchOpponent, userHasDisconnectedInGamePage, startNewGame }
+module.exports = { lookForMatchOpponent, dontMatchDissconctedUser, startNewGame }

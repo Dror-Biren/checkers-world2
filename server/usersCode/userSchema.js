@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         minlength: [3,' is too short- Must contain at least 3 characters'],
-        maxlength: [10,' is too long- Must contain at most 10 characters'],
         unique: true,
         required: [true, "is required"],
         trim: true
@@ -23,14 +22,13 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         validate(value) {
             if (!validator.isEmail(value))
-                throw new Error(' is invalid')
+                throw new Error(' is not a valid email')
         }
     },
     password: {
         type: String,
         required: [true, " is required"],
         minlength: [6,' is too short- Must contain at least 6 characters'],
-        maxlength: [15,' is too long- Must contain at most 15 characters'],
         trim: true
     },
     rating: {
@@ -62,9 +60,10 @@ const userSchema = new mongoose.Schema({
 
 userSchema.post('save', function(error, doc, next) {
     if (error.name === 'MongoError' && error.code === 11000) {
-      next(new Error("That username or email already exists in our system"));
+        const duplicateKey = Object.keys(error.keyValue)[0]
+        next(new Error(`That ${duplicateKey} is already exists in our system`));
     } else {
-      next(error);
+        next(error);
     }
   });
 

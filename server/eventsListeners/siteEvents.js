@@ -1,6 +1,6 @@
 const { signUpUser, logInUser, getTopUsers } = require('../usersCode/userOperations')
 const sendConfirmEmail = require('../usersCode/emailSender')
-const { lookForMatchOpponent, userHasDisconnectedInGamePage } = require('./matchPlayersForGame')
+const { lookForMatchOpponent, dontMatchDissconctedUser } = require('./matchPlayersForGame')
 const findUserByToken = require('../usersCode/authentication')
 const startGameEventsListening = require('./gameEvents')
 
@@ -72,7 +72,7 @@ function startSiteEventsListening(socket) {
             user.isNewGameRequested = false
             await user.save()
 
-            socket.on('disconnect', () => userHasDisconnectedInGamePage(user))
+            socket.on('disconnect', () => dontMatchDissconctedUser(user))
             const match = lookForMatchOpponent(socket, user)
             if (match) {
                 startGameEventsListening(user, match.user, socket, match.socket)

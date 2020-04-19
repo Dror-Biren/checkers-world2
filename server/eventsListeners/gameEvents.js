@@ -21,6 +21,7 @@ function startGameEventsListening(user, opponent, socket, opponentSocket) {
         try {
             const status = isUserWon ? "win" : "lose"
             console.log(`User "${user.username}" has ${status} against "${opponent.username}"`)
+            socket.gameInProgress = false
             const ratingChange = await updateUserRating(
                 user, opponentSocket.ratingAtGameStart, isUserWon)
             callback(undefined, ratingChange)
@@ -44,6 +45,10 @@ function startGameEventsListening(user, opponent, socket, opponentSocket) {
     })
 
     socket.on('disconnect', async() => {
+        if (!socket.gameInProgress)
+            return
+
+        socket.gameInProgress = opponentSocket.gameInProgress = false
         console.log(`User "${user.username}" lost against "${opponent.username}" 'due to disconnection`)
         const ratingChange = await updateUserRating(opponent, user.rating, true)
         updateUserRating(user, opponentSocket.ratingAtGameStart, false)

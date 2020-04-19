@@ -17,7 +17,6 @@ socket.on('initGame', (isPlayerWhite, clientRating, opponentUser, callback) => {
         PlayersInfo.setOrder()
         if (isBoardUpsideDown === isPlayerWhite)
             RunGame.flipBoard()
-
         
         callback()
     } catch (error) {
@@ -51,6 +50,7 @@ socket.on('opponentDisconnect', (ratingChange, callback) => {
         console.log(`opponent disconnect - client have won ${ratingChange} points`)
         RunGame.endTheGame(true)
         PlayersInfo.updateRating(ratingChange)
+        rematchButton.disabled = true
         callback()
     } catch (error) {
         callback(error)

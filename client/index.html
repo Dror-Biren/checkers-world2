@@ -32,21 +32,35 @@
                     <h2>Sign-up for free!</h2>
                 </div>
 
-                <form>
+                <form autocomplete="off">
                     <label>user-name: <span class="dotted">---------</span> </label>
-                    <input type="text" name="username" placeholder=" choose your username" required autocomplete="off">
+                    <input type="text" name="username" placeholder=" choose your username" 
+                        maxlength="10" autocomplete="off" required>
                     <br>
 
                     <label>password: <span class="dotted ">-----------</span></label>
-                    <input type="password" name="password" placeholder=" choose your password" required autocomplete="off">
+                    <input type="password" name="password" placeholder=" choose your password"
+                        maxlength="12" autocomplete="new-password" 
+                        readonly="readonly"
+                        onfocus="setTimeout(() => this.removeAttribute('readonly'), 1)"
+                        onblur="this.setAttribute('readonly', 'readonly')"
+                        oninput="this.setAttribute('readonly', 'readonly'); setTimeout(() => this.removeAttribute('readonly'), 1)"
+                        required>
                     <br>
 
                     <label>confirm password: <span class="dotted">---</span></label>
-                    <input type="password" name="confirmPassword" placeholder=" repeat your password" required autocomplete="off">
+                    <input type="password" name="confirmPassword" placeholder=" repeat your password"
+                        maxlength="12" autocomplete="new-password"
+                        readonly="readonly"
+                        onfocus="setTimeout(() => this.removeAttribute('readonly'), 1)"
+                        onblur="this.setAttribute('readonly', 'readonly')"
+                        oninput="this.setAttribute('readonly', 'readonly'); setTimeout(() => this.removeAttribute('readonly'), 1)" 
+                        required>
                     <br>
 
                     <label>email: <span class="dotted">--------------</span></label>
-                    <input type="text" name="email" placeholder=" your email here" required>
+                    <input type="text" name="email" placeholder=" your email here"
+                        maxlength="25" autocomplete="on" required>
                     <br>
 
                     <button type="button" class="mainButton smallMargin" onclick="submitForm('signUp')">
